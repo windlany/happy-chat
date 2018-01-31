@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/font-awesome-4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="all">
+      <div class="name">
+        <!-- <h2>请输入你的昵称</h2> -->
+        <input type="text" id="name" placeholder="请输入昵称..." autocomplete="off"> 
+        <button id="nameBtn">确  定</button>
+      </div>
+      <div class="main">
+        <div class="header">
+          <img src="image/logo.jpg">
+          happy聊天室
+        </div>
+        <div id="container">
+          <div class="conversation">
+              <ul id="messages"></ul>
+              <form action="">
+                  <div class="edit"> 
+                    <input type="color" id="color" value="#000000">
+                    <i title="双击取消选择" class="fa fa-smile-o" id="smile">
+                    </i><i title="双击取消选择" class="fa fa-picture-o" id="img"></i>
+                    <div class="selectBox"> 
+                      <div class="smile"> 
+                      </div>
+                      <div class="img"> 
+                      </div>
+                    </div>
+                  </div>
+                  <!-- autocomplete禁用自动完成功能 -->
+                  <textarea id="m"></textarea>
+                  <button class="btn rBtn" id="sub">发送</button>
+                  <button class="btn" id="clear">关闭</button>
+              </form>
+          </div>
+          <div class="contacts">
+            <h1>在线人员(<span id="num">0</span>)</h1>
+            <ul id="users"></ul>
+            <p>当前无人在线哟~</p>
+          </div>
+        </div>
+      </div> 
+    </div>
+    
+
+    <!-- 加载全局io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/chat-client.js"></script>
+  </body>
+</html>

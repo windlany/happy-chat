@@ -1,0 +1,303 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+body { 
+    font: 13px "微软雅黑", Helvetica, Arial; 
+    background: url('../image/bg3.jpg');
+    background-size: cover;
+} 
+.name {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color:rgba(238, 238, 238, 0.8);
+    text-align: center;
+    padding-top: 35vh;
+}
+.name input {
+    width: 200px;
+    border: none;
+    border-bottom: 2px solid #bbb;
+    background-color: #f3f3f3;
+    font-size: 23px;
+    color: #555;
+    text-align: center;
+}
+.name button {
+    display: block;
+    width: 107px;
+    height: 36px;
+    margin: 0 auto;
+    border: none;
+    background-color: #805b6b;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 17px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.main {
+    width: 705px;
+    height: 556px;
+    margin: 7vh auto; 
+    border: 2px #eee solid; 
+    border-radius: 10px;  
+    box-shadow: 3px 5px 9px #ccc;
+    background-color: rgba(255, 255, 255, 1);
+}
+.header {
+    height: 85px;
+    border-bottom: 2px solid #eee;
+    font-size: 23px;
+    padding-left: 10px;
+    padding-top: 10px;
+    color: #555;
+}
+.header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    vertical-align: middle;
+}
+#container {
+    height: 471px;
+    display: flex;
+}
+.conversation {
+    width: 490px;
+    border-right: 2px #eee solid;
+}
+#messages {
+    height: 346px;
+    padding: 20px 10px 0px 10px;
+    overflow-y: auto;
+} 
+ /*滚动条样式*/
+#messages::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+#messages::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+#messages::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+p.system {
+    color: #888;
+    text-align: center;
+    margin: 5px;
+}
+p.system span {
+    background-color: #eee;
+    border-radius: 9px;
+    padding: 1px 5px;    
+    margin-bottom: 7px;
+    display: inline-block;
+}
+#messages li {
+    list-style: none;
+    width: 100%;
+    float: left;
+    margin-bottom: 5px;
+}
+#messages li img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+.left img {
+    margin-right: 8px;
+}
+.right img {
+    margin-left: 8px;
+}
+.left img, .left div {
+    float: left;
+}
+.left span {
+    text-align: left;
+}
+.right span {
+    text-align: right;
+}
+.right p {
+    float: right;
+}
+.right img, .right div {
+    float: right;
+}
+#messages li div span {
+    display: block;
+    color: #555; 
+    padding-left: 2px;
+}
+#messages li div p {
+    display: inline-block;
+    max-width: 300px;
+    height: auto;
+    padding: 10px;
+    margin-top: 5px;
+    word-wrap: break-word;  /* 文本自动换行 */
+    font-size: 15px;
+    border-radius: 5px;
+}
+.left p {
+    background-color: #d5d3d3;
+}
+.right p {
+    background-color: #86bdf8;
+}   
+form {
+    height: 121px;
+    border-top: 1px #ddd solid;
+    position: relative;
+}
+.edit {
+    width: 100%;
+    height: 33px;
+    color: #7f8393;
+    font-size: 19px;
+    line-height: 33px;
+    padding-left: 10px;
+    position: relative;
+}
+.edit i {
+    padding: 5px 6px;
+}
+.edit i:hover {
+    background-color: #e2e2e2;
+}
+.edit .selectBox {
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    z-index: 3;
+    background-color: #fff;
+}
+.edit .none {
+    display: none;
+}
+#color {
+    width: 25px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+#color:focus {
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+textarea {
+    display: block;
+    width: 100%;
+    height: 55px;
+    padding-left: 5px;
+    padding-top: 5px;
+    resize: none;
+    font-size: 16px;
+    background: none;
+    border: none;
+    font-family: '微软雅黑';
+}
+textarea:focus, .btn:focus, .name input:focus, .name button:focus {
+    outline: none;
+}
+ /*滚动条样式*/
+textarea::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+textarea::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+textarea::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+button.btn {
+    width: 72px;
+    height: 25px;
+    float: right;
+    margin-right: 5px;
+    background-color: #805b6b;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+} 
+button.btn.rBtn {
+    margin-right: 10px;
+}
+.btn:hover {
+    background-color: #b495a1;
+}
+.contacts {
+    width: 210px;
+    height: 100%;
+    padding: 6px;
+}
+.contacts h1 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.contacts ul {
+    width: 100%;
+}
+.contacts li {
+    display: inline-block;
+    width: 23%;
+    margin-right: 2%;
+    height: 65px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.contacts li img {
+    width: 100%;
+    height: 45.5px;
+}
+.contacts li>span {
+    display: inline-block;
+    width: 100%;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.contacts p {
+    text-align: center;
+    margin-top: 70px;
+    color: #555;
+}
