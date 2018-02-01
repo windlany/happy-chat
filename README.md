@@ -1,6 +1,6 @@
 # happy chat
 ## 效果图
-![](https://github.com/windlany/happy-chat/blob/master/www/image/shoot1.png) 
+![](https://github.com/windlany/happy-chat/blob/master/www/image/shoot2.png) 
 ## 运行方式
 ```bash
 # clone项目到本地
