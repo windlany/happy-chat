@@ -45,12 +45,25 @@ $(function() {
 
     // 接收消息
     socket.on('receiveMsg', (obj)=> { 
+      // 提取文字中的表情加以渲染
+      var msg = obj.msg;
+      var content = '';
+      while(msg.indexOf('[') > -1) {  // 其实更建议用正则将[]中的内容提取出来
+        var start = msg.indexOf('[');
+        var end = msg.indexOf(']');
+
+        content += '<span>'+msg.substr(0, start)+'</span>';
+        content += '<img src="image/emoji/emoji%20('+msg.substr(start+6, end-start-6)+').png">';
+        msg = msg.substr(end+1, msg.length);
+      }
+      content += '<span>'+msg+'</span>';
+      
       $('#messages').append(`
         <li class='${obj.side}'>
           <img src="${obj.img}">
           <div>
             <span>${obj.name}</span>
-            <p style="color: ${obj.color};">${obj.msg}</p>
+            <p style="color: ${obj.color};">${content}</p>
           </div>
         </li>
       `);
@@ -66,8 +79,7 @@ $(function() {
         alert('请输入内容！');
         return false;
       }
-      color = $('#color').val();
-      console.log(color);
+      color = $('#color').val(); 
       socket.emit('sendMsg', {
         msg: $('#m').val(),
         color: color
@@ -99,30 +111,33 @@ $(function() {
       $('#messages').text('');
       socket.emit('disconnect');
     });
-
-    // 富文本选项卡 
-    $('.edit').click((ev)=> {
-      ev = ev || window.event;
-      var target = ev.target;
-      $('.smile, .img').addClass('none');
-      $('#smile, #img').css('background', 'none');
-      $('.selectBox').css('display', "block");
-      var options = $('.selectBox > div');
-      switch(target.id) {
-        case 'smile':
-          $('#smile').css('backgroundColor', '#e2e2e2');
-          $('.smile').removeClass('none');
-          break;
-        case 'img':
-          $('#img').css('backgroundColor', '#e2e2e2');
-          $('.img').removeClass('none');
-          break; 
+ 
+    // 渲染表情
+    init();
+    function init() {
+      for(var i = 0; i < 141; i++) {
+        $('.emoji').append('<li id='+i+'><img src="image/emoji/emoji ('+(i+1)+').png"></li>');
       }
+    }
+
+    // 显示表情
+    $('#smile').click(()=> {
+      $('.selectBox').css('display', "block");
     });
-    $('.edit').dblclick((ev)=> { 
-      $('.smile, .img').addClass('none');
+    $('#smile').dblclick((ev)=> { 
       $('.selectBox').css('display', "none");
-      $('#smile, #img').css('background', 'none'); 
+    });  
+    $('#m').click(()=> {
+      $('.selectBox').css('display', "none");
     }); 
 
+    // 用户点击发送表情
+    $('.emoji li img').click((ev)=> {
+        ev = ev || window.event;
+        var src = ev.target.src;
+        var emoji = src.replace(/\D*/g, '').substr(6, 8);
+        var old = $('#m').val();
+        $('#m').val(old+'[emoji'+emoji+']');
+        $('.selectBox').css('display', "none");
+    });
 });

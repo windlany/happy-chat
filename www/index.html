@@ -26,16 +26,17 @@
                   <div class="edit"> 
                     <input type="color" id="color" value="#000000">
                     <i title="双击取消选择" class="fa fa-smile-o" id="smile">
-                    </i><i title="双击取消选择" class="fa fa-picture-o" id="img"></i>
+                    </i>
+                    <!-- <i class="fa fa-picture-o" id="img"></i> -->
                     <div class="selectBox"> 
-                      <div class="smile"> 
-                      </div>
-                      <div class="img"> 
-                      </div>
+                      <div class="smile" id="smileDiv"> 
+                        <p>经典表情</p>
+                        <ul class="emoji"></ul>
+                      </div> 
                     </div>
                   </div>
                   <!-- autocomplete禁用自动完成功能 -->
-                  <textarea id="m"></textarea>
+                  <textarea id="m" autofocus></textarea>
                   <button class="btn rBtn" id="sub">发送</button>
                   <button class="btn" id="clear">关闭</button>
               </form>

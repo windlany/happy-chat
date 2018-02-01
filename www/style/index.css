@@ -115,6 +115,16 @@ p.system span {
     height: 40px;
     border-radius: 20px;
 }
+#messages li p img {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+}
+#messages li p span {
+    padding-top: 7px;  
+}
 .left img {
     margin-right: 8px;
 }
@@ -136,13 +146,13 @@ p.system span {
 .right img, .right div {
     float: right;
 }
-#messages li div span {
+#messages li div>span {
     display: block;
     color: #555; 
     padding-left: 2px;
 }
 #messages li div p {
-    display: inline-block;
+    display: flex;
     max-width: 300px;
     height: auto;
     padding: 10px;
@@ -175,19 +185,19 @@ form {
     padding: 5px 6px;
 }
 .edit i:hover {
-    background-color: #e2e2e2;
+    background-color: #e2e2e2 !important;
 }
 .edit .selectBox {
     display: none;
     position: absolute;
-    bottom: 30px;
-    left: 10px;
+    bottom: 34px;
+    left: 0px;
     z-index: 3;
     background-color: #fff;
 }
 .edit .none {
     display: none;
-}
+} 
 #color {
     width: 25px;
     border: none;
@@ -197,8 +207,63 @@ form {
 #color:focus {
     outline: none;
 }
+.smile {
+    width: 460px;
+    height: auto;
+    border: 1px #eee solid; 
+    box-shadow: 1px 1px 1px #ccc;
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+.smile p {
+    height: 35px;
+    font-size: 15px;
+    color: #555;
+    line-height: 35px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.emoji {
+    width: 100%;
+    height: 210px; 
+    overflow-y: scroll;
+    padding: 0 17px;
+}
+.emoji li {
+    list-style: none;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-top: 4px;
+    padding-left: 2px;
+    display: inline-block;
+    margin: 0;
+}
+.emoji li:hover {
+    padding-top: 1px;
+    background-color: #f3f3f4;
+}
+.emoji li img {
+    width: 30px;
+    height: 30px;
+}
 
-
+.emoji::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+.emoji::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.emoji::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
 
 
 
