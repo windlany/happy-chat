@@ -184,6 +184,5 @@ $(function() {
         }); 
       };
       reader.readAsDataURL(file); // 读取为64位
-
     });
 });
