@@ -3,16 +3,13 @@ $(function() {
     // 连接成功会触发服务器端的connection事件
     var socket = io(); 
 
-    // 点击输入昵称
-    $('#nameBtn').click(()=> {  
-      var imgN = Math.floor(Math.random()*4)+1; // 随机分配头像
-      if($('#name').val().trim()!=='')
-          socket.emit('login', { 
-            name: $('#name').val(),
-            img: 'image/user' + imgN + '.jpg'
-          });  // 触发登录事件
-      return false;  
+    // 点击输入昵称，回车登录
+    $('#name').keyup((ev)=> {
+      if(ev.which == 13) {
+        inputName();
+      }
     });
+    $('#nameBtn').click(inputName);
     // 登录成功，隐藏登录层
     socket.on('loginSuc', ()=> { 
       $('.name').hide(); 
@@ -21,6 +18,16 @@ $(function() {
       alert('用户名已存在，请重新输入！');
       $('#name').val('');
     }); 
+
+    function inputName() {
+      var imgN = Math.floor(Math.random()*4)+1; // 随机分配头像
+      if($('#name').val().trim()!=='')
+          socket.emit('login', { 
+            name: $('#name').val(),
+            img: 'image/user' + imgN + '.jpg'
+          });  // 触发登录事件
+      return false; 
+    }
 
     // 系统提示消息
     socket.on('system', (user)=> { 
@@ -45,6 +52,21 @@ $(function() {
 
     // 接收消息
     socket.on('receiveMsg', (obj)=> { 
+      // 发送为图片
+      if(obj.type == 'img') {
+        $('#messages').append(`
+          <li class='${obj.side}'>
+            <img src="${obj.img}">
+            <div>
+              <span>${obj.name}</span>
+              <p style="padding: 0;">${obj.msg}</p>
+            </div>
+          </li>
+        `); 
+        $('#messages').scrollTop($('#messages')[0].scrollHeight);
+        return;
+      }
+
       // 提取文字中的表情加以渲染
       var msg = obj.msg;
       var content = '';
@@ -82,7 +104,8 @@ $(function() {
       color = $('#color').val(); 
       socket.emit('sendMsg', {
         msg: $('#m').val(),
-        color: color
+        color: color,
+        type: 'text'
       });
       $('#m').val(''); 
       return false; 
@@ -139,5 +162,28 @@ $(function() {
         var old = $('#m').val();
         $('#m').val(old+'[emoji'+emoji+']');
         $('.selectBox').css('display', "none");
+    });
+
+    // 用户发送图片
+    $('#file').change(function() {
+      var file = this.files[0];  // 上传单张图片
+      var reader = new FileReader();
+
+      //文件读取出错的时候触发
+      reader.onerror = function(){
+          console.log('读取文件失败，请重试！'); 
+      };
+      // 读取成功后
+      reader.onload = function() {
+        var src = reader.result;  // 读取结果
+        var img = '<img class="sendImg" src="'+src+'">';
+        socket.emit('sendMsg', {  // 发送
+          msg: img,
+          color: color,
+          type: 'img'
+        }); 
+      };
+      reader.readAsDataURL(file); // 读取为64位
+
     });
 });

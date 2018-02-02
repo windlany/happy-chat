@@ -122,6 +122,13 @@ p.system span {
     padding: 0;
     vertical-align: bottom;
 }
+#messages li p .sendImg {
+    max-width: 300px;
+    max-height: 188px;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
 #messages li p span {
     padding-top: 7px;  
 }
@@ -194,10 +201,17 @@ form {
     left: 0px;
     z-index: 3;
     background-color: #fff;
-}
-.edit .none {
-    display: none;
 } 
+.edit #file {
+    width: 32.36px;
+    height: 29px;
+    opacity: 0;
+    z-index: 5;
+}
+.edit #img {
+    z-index: 0;
+    margin-left: -43px;
+}
 #color {
     width: 25px;
     border: none;

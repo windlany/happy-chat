@@ -53,6 +53,7 @@ io.on('connection', (socket)=> {
             img: img,
             msg: data.msg,
             color: data.color,
+            type: data.type,
             side: 'left'
         });
         socket.emit('receiveMsg', {
@@ -60,9 +61,10 @@ io.on('connection', (socket)=> {
             img: img,
             msg: data.msg,
             color: data.color,
+            type: data.type,
             side: 'right'
         });
-    });
+    });  
 
     // 断开连接时
     socket.on('disconnect', ()=> {
