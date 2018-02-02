@@ -1,6 +1,6 @@
 # happy chat
 ## 效果图
-![](https://github.com/windlany/happy-chat/blob/master/www/image/shoot2.png) 
+![](https://github.com/windlany/happy-chat/blob/master/www/image/shoot3.png) 
 ## 运行方式
 ```bash
 # clone项目到本地
@@ -22,5 +22,6 @@ node server.js
 - 接收与发送消息 
 - 自定义消息字体颜色
 - 支持发送表情
-## 有待完成
 - 支持发送图片
+## 有待完成
+- 窗口震动
