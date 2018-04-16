@@ -40,6 +40,16 @@ io.on('connection', (socket)=> {
         }
     });
 
+    // 发送窗口抖动
+    socket.on('shake', ()=> {
+        socket.emit('shake', {
+            name: '您'
+        });
+        socket.broadcast.emit('shake', {
+            name: socket.nickname
+        });
+    });
+
     // 发送消息事件
     socket.on('sendMsg', (data)=> {
         var img = '';

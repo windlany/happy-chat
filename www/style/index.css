@@ -49,6 +49,8 @@ body {
     border-radius: 10px;  
     box-shadow: 3px 5px 9px #ccc;
     background-color: rgba(255, 255, 255, 1);
+    position: relative;
+    left: 0;
 }
 .header {
     height: 85px;
@@ -84,10 +86,12 @@ body {
 }
 #messages::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
     border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     background: rgba(0,0,0,0.2);
 }
 #messages::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     border-radius: 0;
     background: rgba(0,0,0,0.1);
@@ -190,6 +194,7 @@ form {
 }
 .edit i {
     padding: 5px 6px;
+    cursor: pointer;
 }
 .edit i:hover {
     background-color: #e2e2e2 !important;
@@ -201,7 +206,24 @@ form {
     left: 0px;
     z-index: 3;
     background-color: #fff;
-} 
+}  
+.shaking {
+    animation: run 0.2s infinite;
+}
+@keyframes run {
+    0% {
+        left: 0;
+    }
+    25% {
+        left: -7px;
+    }
+    50% {
+        left: 7px;
+    }
+    100% {
+        left: 0;
+    }
+}
 .edit #file {
     width: 32.36px;
     height: 29px;
@@ -217,9 +239,18 @@ form {
     border: none;
     cursor: pointer;
     background: none;
+    opacity: 0;
+    position: relative;
+    z-index: 5;
 }
 #color:focus {
     outline: none;
+}
+.edit #font {
+    position: absolute;
+    left: 9px;
+    top: 3px;
+    z-index: 0;
 }
 .smile {
     width: 460px;
@@ -270,28 +301,16 @@ form {
 }
 .emoji::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
     border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     background: rgba(0,0,0,0.2);
 }
 .emoji::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     border-radius: 0;
     background: rgba(0,0,0,0.1);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} 
 
 textarea {
     display: block;
@@ -315,10 +334,12 @@ textarea::-webkit-scrollbar {/*滚动条整体样式*/
 }
 textarea::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
     border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     background: rgba(0,0,0,0.2);
 }
 textarea::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     border-radius: 0;
     background: rgba(0,0,0,0.1);

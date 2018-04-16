@@ -37,6 +37,15 @@ $(function() {
       $('#messages').scrollTop($('#messages')[0].scrollHeight);
     });
 
+    // 监听抖动事件
+    socket.on('shake', (user)=> { 
+      var data = new Date().toTimeString().substr(0, 8);
+      $('#messages').append(`<p class='system'><span>${data}</span><br /><span>${user.name}发送了一个窗口抖动</span></p>`);
+      shake();
+      // 滚动条总是在最底部
+      $('#messages').scrollTop($('#messages')[0].scrollHeight);
+    });
+
     // 显示在线人员
     socket.on('disUser', (usersInfo)=> {
       displayUser(usersInfo);
@@ -51,7 +60,7 @@ $(function() {
     });
 
     // 接收消息
-    socket.on('receiveMsg', (obj)=> { 
+    socket.on('receiveMsg', (obj)=> {  
       // 发送为图片
       if(obj.type == 'img') {
         $('#messages').append(`
@@ -111,6 +120,15 @@ $(function() {
       return false; 
     }
 
+    var timer;
+    function shake() {
+      $('.main').addClass('shaking');
+      clearTimeout(timer);
+      timer = setTimeout(()=> {
+        $('.main').removeClass('shaking');
+      }, 500);
+    }
+
     // 显示在线人员
     function displayUser(users) {
       $('#users').text(''); // 每次都要重新渲染
@@ -162,6 +180,11 @@ $(function() {
         var old = $('#m').val();
         $('#m').val(old+'[emoji'+emoji+']');
         $('.selectBox').css('display', "none");
+    });
+
+    // 用户发送抖动
+    $('.edit #shake').click(function() {
+        socket.emit('shake');
     });
 
     // 用户发送图片
